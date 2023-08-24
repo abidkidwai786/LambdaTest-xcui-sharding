@@ -1,0 +1,48 @@
+version: "0.2"
+concurrency: 2
+runson: ios
+autosplit: true
+maxRetries: 2
+retryOnFailure: true
+
+framework:
+  name: "ios/xcui"
+  args:
+    buildName: "XCUIT"
+    video: true
+    networkLog: true
+    deviceLog: true
+    
+    # You can use either the appId (APP1234567) or provide the path of the application using appPath.
+
+    #appPath: app.ipa
+    appId: <app_url>
+    # We have used the appPath here instead of appId
+
+    # You can use either the APP ID (APP1234567) or provide the path of the application.
+
+    testSuiteAppId: <suite_url>
+    # We have used the testSuiteAppID here instead of testSuitePath
+
+    deviceSelectionStrategy: all # all/any
+    devices: ["iPhone 12 Pro-14", "iPhone 11 Pro-14"]
+
+    shards:
+      mappings:
+      - name: shard1
+        strategy: "only-testing/skip-testing"
+        values: ["<className>/<className/testName>"]
+     - name: shard2
+       strategy: "only-testing/skip-testing"
+       values: [""<className>/<className/testName>"", ""<className>/<className/testName>""]
+
+
+#Example:
+
+    # filters:
+    #   attributes:
+    #   - type: className
+    #     values: ["LambdaUiKitIOSUITests","LambdaUiKitIOSUITestsLaunchTests"]
+    #   - type: testName
+    #     values: ["LambdaUiKitIOSUITests/testverifyAppLaunch"]   
+
